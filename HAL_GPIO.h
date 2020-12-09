@@ -2,6 +2,10 @@
 #define HAL_GPIO
 
 #include "stm32f401xe.h"
+#include <stdint.h>
+
+#define LOW 	0
+#define HIGH 	1
 
 #define PORTA		GPIOA
 #define PORTB		GPIOB
@@ -9,10 +13,6 @@
 #define PORTD		GPIOD
 #define PORTE		GPIOE
 #define PORTF		GPIOF
-
-//	PIN MODE
-#define OUTPUT_MODE		((uint32_t) 0x01)
-#define INPUT_MODE		((uint32_t) 0x02)
 
 //	MODER (Types)
 #define INPUT_ANALOG			((uint32_t) 0x00)
@@ -59,7 +59,7 @@ typedef struct
 	
 	uint32_t	mode;
 	
-	uint32_t	mode_type;
+	uint32_t	out_type;
 	
 	uint32_t	pull;
 	
@@ -68,18 +68,27 @@ typedef struct
 	uint32_t	alt_func;
 }GPIO_TYPE;
 
-// Function Prototypes
-//
-//
-// 
-//					GPIO CONFIGURATION
+//	GPIO CONFIGURATION
+//*******************************************//
+// Configure pin mode
 static void HAL_Config_Mode(GPIO_TypeDef *port , uint32_t pinNumber , uint32_t mode_type);
-
+// Configure pin speed
 static void HAL_Config_Speed(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pinSpeed);
+// Configure pin output type
+static void HAL_Config_Otype(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pinOtype);
+// Configure pin pull-up/down register
+static void HAL_Config_Pupd(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pupdMode);
 
+//	GPIO USER PIN FUNCTIONS
+//*******************************************//
+// Set/reset specific pin
+void GPIO_Write(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t state);
+// Toggle specific pin
+void GPIO_Toggle(GPIO_TypeDef *port, uint32_t pinNumber);
 
-
-
+//	GPIO INITIALIZATION
+//*******************************************//
+void GPIO_Init(GPIO_TYPE gpio_type);
 
 
 

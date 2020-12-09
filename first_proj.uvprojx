@@ -419,6 +419,14 @@
   </Targets>
 
   <RTE>
+    <boards>
+      <board Bname="NUCLEO-F401RE" Bvendor="STMicroelectronics" Bversion="Rev.C">
+        <package name="STM32NUCLEO_BSP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.7.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </board>
+    </boards>
     <apis/>
     <components>
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.4.0" condition="ARMv6_7_8-M Device">
@@ -459,6 +467,7 @@
       <Layer>
         <LayName>first_proj</LayName>
         <LayPrjMark>1</LayPrjMark>
+        <LayTitle>NucleoF4RE01_HAL_project</LayTitle>
       </Layer>
     </Layers>
   </LayerInfo>
