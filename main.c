@@ -15,12 +15,23 @@ int main(void)
 	
 	GPIO_Init(testGPIO);
 	
+	INTERRUPT_GPIO_Config(PORTC, 13, RISING_EDGE);
+	INTERRUPT_GPIO_Enable(13, EXTI15_10_IRQn);
+
 	while(1)
 	{
-		GPIO_Toggle(PORTA, 5);	// Toggle pin 5
-		delay(1000000);
+		
 	}
 }
+
+void EXTI15_10_IRQHandler(void)	
+{
+	// Clear the interrupt pending flag
+	INTERRUPT_GPIO_Clear(13);
+	
+	GPIO_Toggle(PORTA, 5);
+}
+
 
 void delay(uint32_t a)
 {

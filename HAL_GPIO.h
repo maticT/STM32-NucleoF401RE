@@ -50,9 +50,9 @@
 #define GPIO_CLOCK_ENABLE_PORTC			(RCC->AHB1ENR |= (1<<2))
 #define GPIO_CLOCK_ENABLE_PORTD			(RCC->AHB1ENR |= (1<<3))
 #define GPIO_CLOCK_ENABLE_PORTE			(RCC->AHB1ENR |= (1<<4))
+#define GPIO_CLOCK_ENABLE_PORTH			(RCC->AHB1ENR |= (1<<7))
 
-typedef struct
-{
+typedef struct {
 	GPIO_TypeDef *port;
 	
 	uint32_t	pin;
@@ -68,27 +68,39 @@ typedef struct
 	uint32_t	alt_func;
 }GPIO_TYPE;
 
+typedef enum {
+	RISING_EDGE,
+	FALLING_EDGE,
+	RISING_FALLING_EDGE
+}edge_select;
+
+
 //	GPIO CONFIGURATION
 //*******************************************//
-// Configure pin mode
+//	Configure pin mode
 static void HAL_Config_Mode(GPIO_TypeDef *port , uint32_t pinNumber , uint32_t mode_type);
-// Configure pin speed
+//	Configure pin speed
 static void HAL_Config_Speed(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pinSpeed);
-// Configure pin output type
+//	Configure pin output type
 static void HAL_Config_Otype(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pinOtype);
-// Configure pin pull-up/down register
+//	Configure pin pull-up/down register
 static void HAL_Config_Pupd(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pupdMode);
+//	GPIO initialization
+void GPIO_Init(GPIO_TYPE gpio_type);
+
 
 //	GPIO USER PIN FUNCTIONS
 //*******************************************//
-// Set/reset specific pin
+//	Set/reset specific pin
 void GPIO_Write(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t state);
-// Toggle specific pin
+//	Toggle specific pin
 void GPIO_Toggle(GPIO_TypeDef *port, uint32_t pinNumber);
 
-//	GPIO INITIALIZATION
+//	INTERRUPTS
 //*******************************************//
-void GPIO_Init(GPIO_TYPE gpio_type);
+void INTERRUPT_GPIO_Config(GPIO_TypeDef *port, uint32_t pinNumber, edge_select edge);
+void INTERRUPT_GPIO_Enable(uint32_t pinNumber, IRQn_Type irqNumber);
+void INTERRUPT_GPIO_Clear(uint32_t pinNumber);
 
 
 
