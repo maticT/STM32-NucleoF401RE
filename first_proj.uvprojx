@@ -406,6 +406,16 @@
               <FileType>5</FileType>
               <FilePath>.\HAL_GPIO.h</FilePath>
             </File>
+            <File>
+              <FileName>HAL_USART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\HAL_USART.c</FilePath>
+            </File>
+            <File>
+              <FileName>HAL_USART.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HAL_USART.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

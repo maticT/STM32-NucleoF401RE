@@ -2,7 +2,6 @@
 #define HAL_GPIO
 
 #include "stm32f401xe.h"
-#include <stdint.h>
 
 #define LOW 	0
 #define HIGH 	1

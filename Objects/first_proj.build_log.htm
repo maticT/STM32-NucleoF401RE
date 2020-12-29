@@ -22,39 +22,50 @@ Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
 C:\Users\trcak\Documents\Keil projects\first_proj.uvprojx
-Project File Date:  12/08/2020
+Project File Date:  12/22/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.15', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
-assembling startup_stm32f401xe.s...
-main.c(27): warning: no previous prototype for function 'EXTI15_10_IRQHandler' [-Wmissing-prototypes]
+main.c(21): warning: implicit declaration of function 'USART_Initialize' is invalid in C99 [-Wimplicit-function-declaration]
+        USART_Initialize(2);
+        ^
+main.c(37): warning: implicit declaration of function 'USART_Print' is invalid in C99 [-Wimplicit-function-declaration]
+        USART_Print("Hello world! I'm %d years old\n", 25);
+        ^
+main.c(31): warning: no previous prototype for function 'EXTI15_10_IRQHandler' [-Wmissing-prototypes]
 void EXTI15_10_IRQHandler(void) 
      ^
-main.c(27): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(31): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void EXTI15_10_IRQHandler(void) 
 ^
 static 
 main.c(2): warning: In file included from...
-./HAL_GPIO.h(81): warning: unused function 'HAL_Config_Mode' [-Wunused-function]
+./HAL_GPIO.h(80): warning: unused function 'HAL_Config_Mode' [-Wunused-function]
 static void HAL_Config_Mode(GPIO_TypeDef *port , uint32_t pinNumber , uint32_t mode_type);
             ^
-./HAL_GPIO.h(83): warning: unused function 'HAL_Config_Speed' [-Wunused-function]
+./HAL_GPIO.h(82): warning: unused function 'HAL_Config_Speed' [-Wunused-function]
 static void HAL_Config_Speed(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pinSpeed);
             ^
-./HAL_GPIO.h(85): warning: unused function 'HAL_Config_Otype' [-Wunused-function]
+./HAL_GPIO.h(84): warning: unused function 'HAL_Config_Otype' [-Wunused-function]
 static void HAL_Config_Otype(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pinOtype);
             ^
-./HAL_GPIO.h(87): warning: unused function 'HAL_Config_Pupd' [-Wunused-function]
+./HAL_GPIO.h(86): warning: unused function 'HAL_Config_Pupd' [-Wunused-function]
 static void HAL_Config_Pupd(GPIO_TypeDef *port, uint32_t pinNumber, uint32_t pupdMode);
             ^
-5 warnings generated.
+7 warnings generated.
 compiling main.c...
+HAL_USART.c(43): warning: format string is not a string literal [-Wformat-nonliteral]
+        vsprintf(buff, msg, args);
+                       ^~~
+1 warning generated.
+compiling HAL_USART.c...
 compiling HAL_GPIO.c...
+assembling startup_stm32f401xe.s...
 compiling system_stm32f4xx.c...
 linking...
-Program Size: Code=2172 RO-data=420 RW-data=0 ZI-data=1632  
-".\Objects\first_proj.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=9028 RO-data=972 RW-data=0 ZI-data=1632  
+".\Objects\first_proj.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -85,10 +96,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.4.0
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f401xe.s
-      Source file:   MDK\Device\Source\ARM\STM32F401xx_OPT.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+      Source file:   MDK\Device\Source\ARM\STM32F401xx_OPT.s
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f401xe.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
 Build Time Elapsed:  00:00:01
 </pre>

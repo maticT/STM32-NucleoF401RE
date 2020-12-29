@@ -18,9 +18,13 @@ int main(void)
 	INTERRUPT_GPIO_Config(PORTC, 13, RISING_EDGE);
 	INTERRUPT_GPIO_Enable(13, EXTI15_10_IRQn);
 
+	USART_Initialize(2);
+	
 	while(1)
 	{
+		//USART_Print("Hello world!\n");
 		
+		delay(1000000);
 	}
 }
 
@@ -30,8 +34,8 @@ void EXTI15_10_IRQHandler(void)
 	INTERRUPT_GPIO_Clear(13);
 	
 	GPIO_Toggle(PORTA, 5);
+	USART_Print("Hello world! I'm %d years old\n", 25);
 }
-
 
 void delay(uint32_t a)
 {
